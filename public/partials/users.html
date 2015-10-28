@@ -1,0 +1,7 @@
+<h3>Users</h3>
+<span ng-show="data.usersList.length===0">No users have signed up.</span>
+<div ng-repeat="user in data.usersList">
+	<span ng-show="user.name">
+		{{user.name}}
+	</span>
+</div>

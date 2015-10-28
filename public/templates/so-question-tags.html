@@ -1,0 +1,5 @@
+<div class="question-tags" ng-show="question.tags">
+	<ul class="no-bullets list-horizontal">
+		<li class="text-muted" ng-repeat="tag in question.tags | commaBreak">{{tag}}</li>
+	</ul>
+</div>

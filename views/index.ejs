@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>MEANStackUnderflow</title>
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+        
+    <script src="/javascripts/angularApp.js"></script>
+    
+  </head>
+  <body ng-app="meanStackOverflow" ng-controller="MainCtrl">
+    <div class="container">
+      <div class="row">
+        <div class="page-header row">
+          <div class="col-md-4">
+            <h3>
+              <span class="glyphicon glyphicon-align-right" style="color:#f69c55;"></span>
+              <span>mean</span>
+              <span style="font-weight:bold;">StackUnderflow</span>
+            </h3>
+          </div>
+          <div class="pull-right col-md-8 col-md-offset-4">
+            <ul class="navigation-buttons">
+              <li ui-sref="questions" class="btn btn-default">Questions</li>
+              <li ui-sref="newQuestion" class="btn btn-default">New Question</li>
+              <li ui-sref="newUser" class="btn btn-default">Create New User</li>
+              <li ui-sref="users" class="btn btn-default">Users</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div ui-view></div>          
+      
+      </div>
+     </div>    
+  </body>
+</html>
