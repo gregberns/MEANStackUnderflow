@@ -1,0 +1,8 @@
+{
+  "name": "MEANStackUnderflow",
+  "description": "An underwhelming MEAN app, mocking the functionality and styling of StackOverflow",
+  "repository": "https://github.com/gregberns/MEANStackUnderflow",
+  "logo": "",
+  "keywords": ["mean", "mongo", "express", "angular", "node"],
+  "image": "heroku/nodejs"
+}
