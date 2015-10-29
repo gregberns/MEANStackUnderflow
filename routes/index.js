@@ -1,3 +1,4 @@
+var app = require('app')''
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -18,9 +19,16 @@ var User = mongoose.model('users');
 var Question = mongoose.model('questions');
 var Answer = mongoose.model('answers');
 
-//mongoose.connect('mongodb://localhost/test');
-db.connect('mongodb://localhost/test');
-
+var env = app.get('env');
+console.log('Start db connect');
+console.log('Env: ' + env)
+if (env === 'development') {
+  db.connect('mongodb://localhost/test');
+} else if (env === 'production') {
+  //mongodb://ds045454.mongolab.com:45454/heroku_dw2tnllk
+  db.connect('mongodb://ds045454.mongolab.com:45454/heroku_dw2tnllk');
+}
+console.log('End db connect');
 
 router.get('/api/users', function(req, res){
   db.getUsers(function(err, users){
