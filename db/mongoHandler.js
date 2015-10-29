@@ -34,7 +34,11 @@ dbM.prototype = Object.create(dbInterface);
 
 dbM.prototype.connect = function(connectionString){
 	//'mongodb://localhost/test'
-	mongoose.connect(connectionString);	
+	try {
+		mongoose.connect(connectionString);
+	} catch (err) {
+		console.log('Error occured when connecting to the database. Error: ' + err)
+	}	
 }
 
 dbM.prototype.getUsers = function(callback){
