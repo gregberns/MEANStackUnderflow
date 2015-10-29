@@ -24,7 +24,8 @@ console.log('Env: ' + env)
 if (env === 'development') {
   db.connect('mongodb://localhost/test');
 } else if (env === 'production') {
-  var PROD_MONGODB =  process.env.PROD_MONGODB;
+  var PROD_MONGODB = process.env.MONGOLAB_URI || process.env.PROD_MONGODB;
+  PROD_MONGODB = require('url').parse(PROD_MONGODB);
   db.connect(PROD_MONGODB);
 }
 console.log('End db connect');
