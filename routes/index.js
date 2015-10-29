@@ -29,8 +29,9 @@ if (env === 'development') {
 }
 console.log('End db connect');
 
-router.get('/api/users', function(req, res){
+router.get('/api/users', function(req, res, next){
   db.getUsers(function(err, users){
+    if (err) { return next(err); }
     res.send(users);
   });
   // Users.find(function(err, users){
