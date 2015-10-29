@@ -1,4 +1,3 @@
-var app = require('app')''
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -19,7 +18,7 @@ var User = mongoose.model('users');
 var Question = mongoose.model('questions');
 var Answer = mongoose.model('answers');
 
-var env = app.get('env');
+var env = process.env.NODE_ENV;
 console.log('Start db connect');
 console.log('Env: ' + env)
 if (env === 'development') {
