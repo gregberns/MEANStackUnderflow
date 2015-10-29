@@ -25,7 +25,8 @@ if (env === 'development') {
   db.connect('mongodb://localhost/test');
 } else if (env === 'production') {
   //mongodb://ds045454.mongolab.com:45454/heroku_dw2tnllk
-  db.connect('mongodb://ds045454.mongolab.com:45454/heroku_dw2tnllk');
+  var PROD_MONGODB =  process.env.PROD_MONGODB;
+  db.connect(PROD_MONGODB);
 }
 console.log('End db connect');
 
