@@ -35,9 +35,6 @@ router.get('/api/users', function(req, res, next){
     if (err) { return next(err); }
     res.send(users);
   });
-  // Users.find(function(err, users){
-  //   res.send(users);
-  // });
 });
 
 router.post('/api/users', function(req, res, next){
@@ -45,61 +42,20 @@ router.post('/api/users', function(req, res, next){
     if (err) { return next(err); }
     res.json(u);
   })
-  
-  // var u = new User(req.body);
-  // 
-  // u.save(function(err, u){
-  //   if (err) { return next(err); }
-  //   res.json(u);
-  // });
 });
 
-
-
-//Get questions /questions
-// router.param('questionId', function(req, resp, next, id){
-//   var q = Question.findById(id);
-//   q.populate('user answers.user');
-//   q.exec(function(err, question){
-//     if (err) { return next(err); }
-//     if (!question) { return next(new Error('cant find question')); }        
-//     req.question = question;
-//     return next();
-//   });
-// });
-
-// router.param('questionId', function(req, resp, next, id){
-//   var q = Question.findById(id);
-//   q.populate('user answers');
-//   q.exec(function(err, question){
-//     if (err) { return next(err); }
-//     if (!question) { return next(new Error('cant find question')); }        
-//     
-//     var options = { path: 'answers.user', model: 'users' }
-//     Question.populate(question, options, function(err, q){
-//       req.question = q;
-//       return next();
-//     })
-//   });
-// });
+router.delete('/api/users/:userId', function(req, res, next){
+  db.removeUser(req.params.userId, function(err, u){
+    if (err) { return next(err); }
+    res.json(u);
+  })
+});
 
 router.get('/api/questions', function(req, res, next){
   db.getQuestions(function(err, questions){
     if (err) { return next(err); }    
     res.json(questions)
   });
-  
-  // Question.find()
-  //   .populate('user')
-  //   .exec(function(err, questions){
-  //     if (err) { return next(err); }
-  //     
-  //     var options = { path: 'answers.user', model: 'users' }
-  //     Question.populate(questions, options, function(err, qs){
-  //       if (err) { return next(err); }
-  //       res.json(qs);
-  //     });
-  //   });
 });
 
 router.get('/api/questions/:questionId', function(req, res, next){
@@ -109,7 +65,6 @@ router.get('/api/questions/:questionId', function(req, res, next){
     if (err) { return next(err); }
     res.json(q);
   })
-  //res.json(req.question);  
 });
 
 router.post('/api/questions', function(req, res, next){
@@ -117,13 +72,6 @@ router.post('/api/questions', function(req, res, next){
     if (err) { return next(err); }
     res.json(q);
   });
-  // 
-  // var q = new Question(req.body);
-  //   
-  // q.save(function(err, q){
-  //   if (err) { return next(err); }
-  //   res.json(q);
-  // });
 });
 
 router.delete('/api/questions/:questionId', function(req, res, next){
@@ -131,10 +79,6 @@ router.delete('/api/questions/:questionId', function(req, res, next){
       if (err) { return next(err); }
       res.json("");
   })
-  
-  // req.question.remove(function(err){
-  //     res.json("");
-  // })
 });
 
 router.put('/api/questions/:questionId/upvote', function(req, res, next){
@@ -142,11 +86,6 @@ router.put('/api/questions/:questionId/upvote', function(req, res, next){
     if (err) { return next(err); }    
     res.json(question);
   })
-  
-  // req.question.upvote(function(err, question){
-  //   if (err) { return next(err); }    
-  //   res.json(question);
-  // })
 });
 
 router.put('/api/questions/:questionId/downvote', function(req, res, next){
@@ -154,11 +93,6 @@ router.put('/api/questions/:questionId/downvote', function(req, res, next){
     if (err) { return next(err); }    
     res.json(question);
   })
-  
-  // req.question.downvote(function(err, question){
-  //   if (err) { return next(err); }    
-  //   res.json(question);
-  // })
 });
 
 router.post('/api/questions/:questionId/answers', function(req, res, next){
@@ -166,13 +100,6 @@ router.post('/api/questions/:questionId/answers', function(req, res, next){
     if (err) { return next(err); }    
     res.json(question);
   });
-    
-  // req.question.answers.push(req.body);
-  // 
-  // req.question.save(function(err, question){
-  //   if (err) { return next(err); }    
-  //   res.json(question);
-  // });
 });
 
 router.put('/api/questions/:questionId/answers/:answerId/upvote', function(req, res, next){
@@ -180,21 +107,6 @@ router.put('/api/questions/:questionId/answers/:answerId/upvote', function(req, 
         if (err) { return next(err); }
         res.json(q);
       });
-  // 
-  // Question.findOneAndUpdate(
-  //   {_id: req.params.questionId, 'answers._id': new ObjectId(req.params.answerId) },
-  //   { $inc: { 'answers.$.votes': 1 } },
-  //   { new: true })
-  //   .populate('user')
-  //   .exec(function(err, question){
-  //     if (err) { return next(err); }
-  //     
-  //     var options = { path: 'answers.user', model: 'users' }
-  //     Question.populate(question, options, function(err, q){
-  //       if (err) { return next(err); }
-  //       res.json(q);
-  //     });
-  //   });
 });
 
 router.put('/api/questions/:questionId/answers/:answerId/downvote', function(req, res, next){
@@ -202,21 +114,6 @@ router.put('/api/questions/:questionId/answers/:answerId/downvote', function(req
         if (err) { return next(err); }
         res.json(q);
       });
-// 
-//   Question.findOneAndUpdate(
-//     {_id: req.params.questionId, 'answers._id': new ObjectId(req.params.answerId) },
-//     { $inc: { 'answers.$.votes': -1 } },
-//     { new: true })
-//     .populate('user')
-//     .exec(function(err, question){
-//       if (err) { return next(err); }
-//       
-//       var options = { path: 'answers.user', model: 'users' }
-//       Question.populate(question, options, function(err, q){
-//         if (err) { return next(err); }
-//         res.json(q);
-//       });
-//     });
 });
 
 router.delete('/api/questions/:questionId/answers/:answerId', function(req, res, next){
@@ -224,15 +121,6 @@ router.delete('/api/questions/:questionId/answers/:answerId', function(req, res,
         if (err) { return next(err); }
         res.json(q);
       });
-  
-  // Question.findByIdAndUpdate(
-  //   { _id: req.params.questionId, 'answers._id': new ObjectId(req.params.answerId) },
-  //   { $pull: { answers: { _id: new ObjectId(req.params.answerId) }}},
-  //   { new: true },
-  //   function(err, question) {
-  //     if (err) { return next(err); }
-  //     res.json(question);
-  // });
 });  
 
 

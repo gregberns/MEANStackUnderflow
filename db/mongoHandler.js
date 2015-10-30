@@ -49,6 +49,9 @@ dbM.prototype.addUser = function(user, callback){
 	new User(user).save(callback);
 }
 
+dbM.prototype.removeUser = function(userId, callback){
+	User.findByIdAndRemove(userId, callback)
+}
 
 dbM.prototype.getQuestions = function(callback){
 	Question.find()

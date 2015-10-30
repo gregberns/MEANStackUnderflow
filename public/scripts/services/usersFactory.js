@@ -17,6 +17,13 @@ angular.module('meanStackOverflow')
 			return $http.post('/api/users', {name: name, email: email}).success(function(data){
 				u._userList.push(data);
 			});
+		},
+		removeUser: function(user){
+			var p = $http.delete('/api/users/'+user._id);
+			p.success(function(data){
+				u.getAll()
+			});
+			return p;
 		}
 	};
 	return u;

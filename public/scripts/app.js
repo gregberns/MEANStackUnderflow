@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider){
         .state('users', {
             url: "/users",
             templateUrl: "partials/users.html",
-            controller: 'MainCtrl'
+            controller: 'UserListCtrl'
         })
         .state('newQuestion', {
             url: "/questions/new",

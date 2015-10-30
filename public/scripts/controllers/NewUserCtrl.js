@@ -12,7 +12,8 @@ function($scope, $state, users, questions){
 		usersList: [],
 		newUserName: '',
 		newUserEmail: '',
-		isValidUserName: true
+		isValidUserName: true,
+		isButtonDisabled: false
 	};
 	
 	//Get users
@@ -33,8 +34,10 @@ function($scope, $state, users, questions){
 		if(!$scope.data.newUserName || $scope.data.newUserName === '') { return; }
 		if(!$scope.data.newUserEmail || $scope.data.newUserEmail === '') { return; }
 		
+		isButtonEnabled = true;
 		$scope.users.addUser($scope.data.newUserName, $scope.data.newUserEmail).success(function(data){
-			$state.go('users');	
+			$state.go('users');
+			isButtonEnabled = false;	
 		});
 	};
 	
