@@ -46,7 +46,7 @@ dbM.prototype.getUsers = function(callback){
 }
 
 dbM.prototype.addUser = function(user, callback){
-	new User(req.body).save(callback);
+	new User(user).save(callback);
 }
 
 

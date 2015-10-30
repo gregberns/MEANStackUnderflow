@@ -1,18 +1,27 @@
-<h3>New User</h3>
-
-<form ng-submit="addUser()">
-	<div class="form-group">
-		<input type="text" 
-				placeholder="User Name" 
-				ng-model="username"
-				class="form-control"></input>
-	</div>
-	<div class="form-group">
-		<input type="text" 
-				placeholder="Email" 
-				ng-model="email" 
-				class="form-control"></input>
-	</div>
-	<button type="submit" class="btn btn-primary">
-				Create New User</button>
-</form>
+<div ng-controller="NewUserCtrl">
+	<h3>New User</h3>
+	
+	<form name="newUser" ng-submit="addUser()">
+		<div class="form-group">
+			<input type="text" 
+					name="userName"
+					placeholder="User Name" 
+					ng-model="data.newUserName"
+					ng-required="true"
+					ng-change="isValidUserName(data.newUserName)"
+					class="form-control"></input>
+		</div>
+		<div class="form-group">
+			<input type="email" 
+					name="email"
+					placeholder="Email" 
+					ng-model="data.newUserEmail"
+					ng-required="true"
+					class="form-control"></input>
+		</div>
+		<button type="submit"
+				class="btn btn-primary"
+				ng-disabled="newUser.$invalid && data.isValidUserName">
+					Create New User</button>
+	</form>
+</div>

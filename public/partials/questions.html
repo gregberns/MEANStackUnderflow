@@ -1,28 +1,29 @@
-<h4>All Questions</h4>
-<span ng-show="data.questionsList.length===0">No questions have been asked.</span>
-<div class="row question-list-item" ng-repeat="question in data.questionsList | orderBy: '-upvotes'">
-	<hr />
-	<div class="question-list-item-votes col-xs-2 col-sm-2 col-md-2">
-		<div class="question-votes-value">{{question.votes}}</div>
-		<div class="question-votes-label">votes</div>
-		<div class="question-answers-value">{{question.answers.length}}</div>
-		<div class="question-answers-label">answers</div>
-	</div>
-	
-	<div class="question-list-item-body col-xs-10 col-sm-10 col-md-10">
-		<div class="row question-title">
-			<a ui-sref="question({ questionId: question._id })">{{question.title}}</a>
+<div>
+	<h4>All Questions</h4>
+	<span ng-show="questions.questionList().length===0">No questions have been asked.</span>
+	<div class="row question-list-item" ng-repeat="question in questions.questionList() | orderBy: '-upvotes'">
+		<hr />
+		<div class="question-list-item-votes col-xs-2 col-sm-2 col-md-2">
+			<div class="question-votes-value">{{question.votes}}</div>
+			<div class="question-votes-label">votes</div>
+			<div class="question-answers-value">{{question.answers.length}}</div>
+			<div class="question-answers-label">answers</div>
 		</div>
 		
-		<div class="row question-content text-muted">
-			{{question.content}}
-		</div>
-		
-		<div class="row question-footer">
-			<so-question-user q="question" class="pull-right" ></so-question-user>
-			<so-question-tags q="question" ></so-question-tags>
+		<div class="question-list-item-body col-xs-10 col-sm-10 col-md-10">
+			<div class="row question-title">
+				<a ui-sref="question({ questionId: question._id })">{{question.title}}</a>
+			</div>
+			
+			<div class="row question-content text-muted">
+				{{question.content}}
+			</div>
+			
+			<div class="row question-footer">
+				<so-question-user q="question" class="pull-right" ></so-question-user>
+				<so-question-tags q="question" ></so-question-tags>
+			</div>		
 		</div>		
 	</div>
-	
+	<hr />
 </div>
-<hr />
