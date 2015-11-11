@@ -24,8 +24,7 @@ var dbInterface = {
 	addAnswer: function(qId, answer, callback){},
 	upvoteAnswer: function(qId, aId, callback){},
 	downvoteAnswer: function(qId, aId, callback){},
-	removeAnswer: function(qId, aId, callback){}
-	
+	removeAnswer: function(qId, aId, callback){}	
 };
 
 var dbM = function(){};
@@ -85,7 +84,7 @@ dbM.prototype.addQuestion = function(question, callback){
 	new Question(question).save(callback);
 };
 
-dbM.prototype.deleteQuestion = function(qId, callback){
+dbM.prototype.removeQuestion = function(qId, callback){
 	this.getQuestion(qId, function(err, question){
 		if (err) { return callback(err); }
 		question.remove(callback)

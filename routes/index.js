@@ -21,12 +21,11 @@ var Answer = mongoose.model('answers');
 var env = process.env.NODE_ENV;
 console.log('Start db connect');
 console.log('Env: ' + env)
-if (env === 'development') {
-  db.connect('mongodb://localhost/test');
-} else if (env === 'production') {
+if (env === 'production') {
   var PROD_MONGODB = process.env.MONGOLAB_URI || process.env.PROD_MONGODB;
-  //PROD_MONGODB = require('url').parse(PROD_MONGODB);
   db.connect(PROD_MONGODB);
+} else {
+  db.connect('mongodb://localhost/test');
 }
 console.log('End db connect');
 
@@ -76,8 +75,8 @@ router.post('/api/questions', function(req, res, next){
 
 router.delete('/api/questions/:questionId', function(req, res, next){
   db.removeQuestion(req.params.questionId, function(err){
-      if (err) { return next(err); }
-      res.json("");
+    if (err) { return next(err); }
+    res.json("");
   })
 });
 

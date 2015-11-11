@@ -25,7 +25,6 @@ function($scope, $state, $stateParams, questions, users){
 	});
 	
 	$scope.questions.getQuestion($scope.data.question._id).success(function(data){
-		console.log(data)
 		$scope.data.question = data;
 	});
 	

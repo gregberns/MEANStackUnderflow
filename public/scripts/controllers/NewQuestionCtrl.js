@@ -12,11 +12,9 @@ function($scope, $state, users, questions){
 		userId: '',
 		title: '',
 		content: '',
-		tags: ''
-		
+		tags: ''		
 	};
-	
-	//init
+		
 	$scope.users.getAll()
 	$scope.questions.getAll()
 	

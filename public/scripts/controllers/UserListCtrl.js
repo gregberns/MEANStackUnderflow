@@ -6,7 +6,6 @@ angular.module('meanStackOverflow')
 function($scope, $state, users){
 	$scope.users = users;
 	
-	//init
 	$scope.users.getAll()
 	
 	$scope.removeUser = function(user){
